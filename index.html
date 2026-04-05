@@ -503,20 +503,19 @@
             </div>
           </div>
         </div>
-        <div class="tcarousel-arrows">
-          <button class="tcarousel-arrow" id="tcarousel-prev" aria-label="Previous">&#8592;</button>
-          <button class="tcarousel-arrow" id="tcarousel-next" aria-label="Next">&#8594;</button>
-        </div>
+        <button class="tcarousel-arrow tcarousel-prev" id="tcarousel-prev" aria-label="Previous">&#8592;</button>
+        <button class="tcarousel-arrow tcarousel-next" id="tcarousel-next" aria-label="Next">&#8594;</button>
       </div>
     </div>
   </section>
   <style>
-    .tcarousel-wrap { position: relative; overflow: hidden; }
+    .tcarousel-wrap { position: relative; overflow: hidden; padding: 0 30px; }
     .tcarousel { display: flex; gap: 1.5rem; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
     .tcarousel .testimonial { flex: 0 0 calc(33.333% - 1rem); min-width: 0; }
-    .tcarousel-arrows { display: flex; justify-content: center; gap: 12px; margin-top: 1.25rem; }
-    .tcarousel-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 1.1rem; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; }
-    .tcarousel-arrow:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .tcarousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--primary); color: #fff; font-size: 1.2rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: background 0.2s, transform 0.2s; }
+    .tcarousel-arrow:hover { background: var(--primary-dark, #4a6a5d); transform: translateY(-50%) scale(1.08); }
+    .tcarousel-prev { left: -22px; }
+    .tcarousel-next { right: -22px; }
     @media (max-width: 768px) {
       .tcarousel .testimonial { flex: 0 0 85%; }
     }
