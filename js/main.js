@@ -70,32 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Contact form
   const form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    form.addEventListener('submit', () => {
       const btn = form.querySelector('button[type="submit"]');
       btn.textContent = 'Sending...';
       btn.disabled = true;
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString()
-      })
-      .then(() => {
-        btn.textContent = 'Sent!';
-        btn.style.background = '#22c55e';
-        form.reset();
-        setTimeout(() => {
-          btn.textContent = 'Send Message';
-          btn.style.background = '';
-          btn.disabled = false;
-        }, 3000);
-      })
-      .catch(() => {
-        btn.textContent = 'Error — try again';
-        btn.style.background = '#ef4444';
-        btn.disabled = false;
-      });
     });
   }
 
