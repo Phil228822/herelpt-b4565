@@ -5,281 +5,258 @@
   <title>Patient Intake Form | Herel Physical Therapy</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; font-size: 12px; color: #111; background: #fff; }
-
-    .page { max-width: 760px; margin: 24px auto; padding: 36px 40px; }
+    body { font-family: Arial, sans-serif; font-size: 13px; color: #111; background: #fff; }
+    .page { max-width: 750px; margin: 20px auto; padding: 32px 36px; }
 
     /* Header */
-    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid #5B7C6E; padding-bottom: 10px; margin-bottom: 18px; }
-    .logo { font-size: 26px; font-weight: 900; letter-spacing: -1px; }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid #5B7C6E; padding-bottom: 10px; margin-bottom: 14px; }
+    .logo { font-size: 24px; font-weight: 900; letter-spacing: -1px; }
     .logo span { color: #C4A882; }
-    .clinic-info { text-align: right; font-size: 10px; color: #555; line-height: 1.7; }
-    .form-title { font-size: 14px; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px; color: #333; }
+    .clinic-info { text-align: right; font-size: 10px; color: #555; line-height: 1.8; }
+    .form-title { font-size: 13px; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; color: #333; }
 
     /* Section headers */
-    h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #fff; background: #5B7C6E; padding: 4px 8px; margin: 16px 0 10px; }
+    h2 { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #fff; background: #5B7C6E; padding: 4px 8px; margin: 14px 0 10px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-    /* Field rows */
-    .row { display: flex; gap: 16px; margin-bottom: 10px; }
-    .field { flex: 1; }
-    .field.half { flex: 0.5; }
-    .field.third { flex: 0.33; }
-    .field.two-third { flex: 0.66; }
-    .field.full { flex: 1 1 100%; }
+    /* Field layout */
+    .row { display: flex; gap: 20px; margin-bottom: 12px; align-items: flex-end; }
+    .f { flex: 1; }
+    .f2 { flex: 2; }
+    .f05 { flex: 0.5; }
+    .f15 { flex: 1.5; }
 
-    label { display: block; font-size: 9px; color: #777; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
-    .line { display: block; border-bottom: 1px solid #999; height: 20px; width: 100%; margin-bottom: 2px; }
-    .line-short { display: block; border-bottom: 1px solid #999; height: 20px; width: 100%; }
-    .lines-tall { display: block; width: 100%; margin-bottom: 2px; }
-    .lines-tall span { display: block; border-bottom: 1px solid #bbb; height: 22px; margin-bottom: 4px; }
+    .lbl { font-size: 9.5px; color: #888; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; display: block; }
+    .writeline { display: block; border-bottom: 1px solid #aaa; height: 20px; width: 100%; }
 
-    /* Checkboxes */
-    .checks { display: flex; flex-wrap: wrap; gap: 6px 18px; }
-    .check-item { display: flex; align-items: center; gap: 5px; font-size: 11px; }
-    .box { display: inline-block; width: 12px; height: 12px; border: 1.5px solid #555; border-radius: 2px; flex-shrink: 0; }
-    .circle { display: inline-block; width: 12px; height: 12px; border: 1.5px solid #555; border-radius: 50%; flex-shrink: 0; }
+    /* Multi-line write area */
+    .writebox { width: 100%; }
+    .writebox .writeline { margin-bottom: 6px; }
+
+    /* Checkboxes - hand-drawn style */
+    .checks { display: flex; flex-wrap: wrap; gap: 7px 22px; margin-top: 4px; }
+    .ci { display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 1; }
+    .sq { display: inline-block; width: 11px; height: 11px; border: 1.5px solid #444; flex-shrink: 0; }
+    .cr { display: inline-block; width: 11px; height: 11px; border: 1.5px solid #444; border-radius: 50%; flex-shrink: 0; }
 
     /* Pain scale */
-    .pain-scale { display: flex; gap: 6px; align-items: center; margin-top: 4px; }
-    .pain-num { display: flex; flex-direction: column; align-items: center; font-size: 10px; gap: 2px; }
-    .pain-circle { width: 22px; height: 22px; border: 1.5px solid #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #333; }
+    .pain-row { display: flex; align-items: center; gap: 10px; margin: 6px 0; flex-wrap: wrap; }
+    .pain-lbl { font-size: 9px; font-weight: 700; text-transform: uppercase; color: #666; width: 44px; }
+    .pain-nums { display: flex; gap: 5px; }
+    .pn { width: 21px; height: 21px; border: 1.5px solid #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; }
 
     /* Signature */
-    .sig-line { border-bottom: 1.5px solid #333; height: 28px; width: 100%; margin-top: 4px; }
-    .sig-label { font-size: 9px; color: #777; margin-top: 3px; }
+    .sig-row { display: flex; gap: 20px; margin-top: 14px; align-items: flex-end; }
+    .sig-line { border-bottom: 1.5px solid #333; height: 30px; }
+    .sig-lbl { font-size: 9.5px; color: #888; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 3px; }
 
-    /* Consent box */
-    .consent-box { border: 1px solid #ccc; padding: 10px 12px; font-size: 10.5px; line-height: 1.7; color: #333; margin-bottom: 12px; background: #fafafa; }
+    /* Consent */
+    .consent { border: 1px solid #ccc; padding: 10px 12px; font-size: 10.5px; line-height: 1.75; color: #333; margin-bottom: 14px; }
 
-    /* Print button */
     .print-btn { display: block; margin: 24px auto 0; padding: 10px 32px; background: #5B7C6E; color: #fff; border: none; border-radius: 5px; font-size: 14px; font-weight: 700; cursor: pointer; }
-    .print-btn:hover { background: #4a6a5d; }
 
     @media print {
-      body { font-size: 11px; }
-      .page { margin: 0; padding: 18px 22px; max-width: 100%; }
+      .page { margin: 0; padding: 18px 24px; max-width: 100%; }
       .print-btn { display: none; }
-      h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- Header -->
   <div class="header">
     <div>
       <div class="logo">Herel <span>PT</span></div>
-      <div style="font-size:10px; color:#777; margin-top:2px;">Physical Therapy</div>
+      <div style="font-size:9.5px;color:#777;margin-top:2px;">Physical Therapy</div>
     </div>
     <div class="clinic-info">
-      73010 El Paseo, Suite 2B &nbsp;|&nbsp; Palm Desert, CA 92260<br>
-      442-234-5364 &nbsp;|&nbsp; HerelTherapy@gmail.com
+      73010 El Paseo, Suite 2B &nbsp;·&nbsp; Palm Desert, CA 92260<br>
+      442-234-5364 &nbsp;·&nbsp; HerelTherapy@gmail.com
     </div>
   </div>
 
   <div class="form-title">Patient Intake Form</div>
 
-  <!-- Patient Information -->
+  <!-- PATIENT INFO -->
   <h2>Patient Information</h2>
   <div class="row">
-    <div class="field two-third"><label>Full Name</label><span class="line"></span></div>
-    <div class="field half"><label>Date of Birth</label><span class="line"></span></div>
-    <div class="field half"><label>Today's Date</label><span class="line"></span></div>
+    <div class="f2"><span class="lbl">Full Name</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">Date of Birth</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">Today's Date</span><span class="writeline"></span></div>
   </div>
   <div class="row">
-    <div class="field"><label>Street Address</label><span class="line"></span></div>
-    <div class="field half"><label>City</label><span class="line"></span></div>
-    <div class="field third"><label>State</label><span class="line"></span></div>
-    <div class="field third"><label>Zip</label><span class="line"></span></div>
+    <div class="f2"><span class="lbl">Street Address</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">City</span><span class="writeline"></span></div>
+    <div class="f05"><span class="lbl">State</span><span class="writeline"></span></div>
+    <div class="f05"><span class="lbl">Zip</span><span class="writeline"></span></div>
   </div>
   <div class="row">
-    <div class="field"><label>Mobile Phone</label><span class="line"></span></div>
-    <div class="field"><label>Email</label><span class="line"></span></div>
-    <div class="field"><label>Employer</label><span class="line"></span></div>
+    <div class="f"><span class="lbl">Mobile Phone</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">Email</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">Employer</span><span class="writeline"></span></div>
   </div>
   <div class="row">
-    <div class="field"><label>Referring Physician</label><span class="line"></span></div>
-    <div class="field"><label>Primary Care Physician</label><span class="line"></span></div>
-    <div class="field"><label>How did you hear about us?</label><span class="line"></span></div>
+    <div class="f"><span class="lbl">Referring Physician</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">Primary Care Physician</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">How did you hear about us?</span><span class="writeline"></span></div>
   </div>
   <div class="row">
-    <div class="field"><label>Emergency Contact Name</label><span class="line"></span></div>
-    <div class="field third"><label>Relationship</label><span class="line"></span></div>
-    <div class="field"><label>Emergency Contact Phone</label><span class="line"></span></div>
+    <div class="f15"><span class="lbl">Emergency Contact Name</span><span class="writeline"></span></div>
+    <div class="f05"><span class="lbl">Relationship</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">Emergency Contact Phone</span><span class="writeline"></span></div>
   </div>
 
-  <!-- Insurance -->
+  <!-- INSURANCE -->
   <h2>Insurance Information</h2>
   <div class="row">
-    <div class="field"><label>Insurance Provider</label><span class="line"></span></div>
-    <div class="field"><label>Member ID</label><span class="line"></span></div>
-    <div class="field"><label>Group Number</label><span class="line"></span></div>
+    <div class="f"><span class="lbl">Insurance Provider</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">Member ID</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">Group Number</span><span class="writeline"></span></div>
   </div>
   <div class="row">
-    <div class="field"><label>Subscriber Name (if different)</label><span class="line"></span></div>
-    <div class="field half"><label>Subscriber DOB</label><span class="line"></span></div>
-    <div class="field"><label>Secondary Insurance (if any)</label><span class="line"></span></div>
+    <div class="f"><span class="lbl">Subscriber Name (if different)</span><span class="writeline"></span></div>
+    <div class="f05"><span class="lbl">Subscriber DOB</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">Secondary Insurance (if any)</span><span class="writeline"></span></div>
   </div>
 
-  <!-- Reason for Visit -->
+  <!-- REASON FOR VISIT -->
   <h2>Reason for Visit</h2>
-  <div class="row">
-    <div class="field full"><label>What brings you in today?</label><div class="lines-tall"><span></span><span></span></div></div>
+  <div style="margin-bottom:12px;">
+    <span class="lbl">What brings you in today?</span>
+    <div class="writebox">
+      <span class="writeline"></span>
+      <span class="writeline"></span>
+      <span class="writeline"></span>
+    </div>
   </div>
   <div class="row">
-    <div class="field half"><label>How long have you had this problem?</label><span class="line"></span></div>
-    <div class="field"><label>How does it affect your daily life?</label><span class="line"></span></div>
+    <div class="f"><span class="lbl">How long have you had this problem?</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">How does it affect your daily life?</span><span class="writeline"></span></div>
   </div>
 
-  <!-- Pain Scale -->
-  <div style="margin-bottom:10px;">
-    <label style="display:block; font-size:9px; color:#777; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:6px;">Pain Level — Circle a number &nbsp; (0 = No Pain &nbsp;|&nbsp; 10 = Worst Possible)</label>
-    <div style="display:flex; gap:4px; margin-bottom:8px;">
-      <div style="font-size:9px; color:#777; margin-right:4px; align-self:center;">NOW</div>
-      <div class="pain-scale">
-        <div class="pain-num"><div class="pain-circle">0</div></div>
-        <div class="pain-num"><div class="pain-circle">1</div></div>
-        <div class="pain-num"><div class="pain-circle">2</div></div>
-        <div class="pain-num"><div class="pain-circle">3</div></div>
-        <div class="pain-num"><div class="pain-circle">4</div></div>
-        <div class="pain-num"><div class="pain-circle">5</div></div>
-        <div class="pain-num"><div class="pain-circle">6</div></div>
-        <div class="pain-num"><div class="pain-circle">7</div></div>
-        <div class="pain-num"><div class="pain-circle">8</div></div>
-        <div class="pain-num"><div class="pain-circle">9</div></div>
-        <div class="pain-num"><div class="pain-circle">10</div></div>
+  <!-- PAIN SCALE -->
+  <div style="margin-bottom:12px;">
+    <span class="lbl" style="margin-bottom:6px;display:block;">Pain Level — Circle a number &nbsp;(0 = No Pain &nbsp; 10 = Worst Possible)</span>
+    <div class="pain-row">
+      <span class="pain-lbl">Now</span>
+      <div class="pain-nums">
+        <div class="pn">0</div><div class="pn">1</div><div class="pn">2</div><div class="pn">3</div><div class="pn">4</div>
+        <div class="pn">5</div><div class="pn">6</div><div class="pn">7</div><div class="pn">8</div><div class="pn">9</div><div class="pn">10</div>
       </div>
-      &nbsp;&nbsp;
-      <div style="font-size:9px; color:#777; margin-right:4px; align-self:center;">WORST</div>
-      <div class="pain-scale">
-        <div class="pain-num"><div class="pain-circle">0</div></div>
-        <div class="pain-num"><div class="pain-circle">1</div></div>
-        <div class="pain-num"><div class="pain-circle">2</div></div>
-        <div class="pain-num"><div class="pain-circle">3</div></div>
-        <div class="pain-num"><div class="pain-circle">4</div></div>
-        <div class="pain-num"><div class="pain-circle">5</div></div>
-        <div class="pain-num"><div class="pain-circle">6</div></div>
-        <div class="pain-num"><div class="pain-circle">7</div></div>
-        <div class="pain-num"><div class="pain-circle">8</div></div>
-        <div class="pain-num"><div class="pain-circle">9</div></div>
-        <div class="pain-num"><div class="pain-circle">10</div></div>
+    </div>
+    <div class="pain-row">
+      <span class="pain-lbl">Worst</span>
+      <div class="pain-nums">
+        <div class="pn">0</div><div class="pn">1</div><div class="pn">2</div><div class="pn">3</div><div class="pn">4</div>
+        <div class="pn">5</div><div class="pn">6</div><div class="pn">7</div><div class="pn">8</div><div class="pn">9</div><div class="pn">10</div>
       </div>
-      &nbsp;&nbsp;
-      <div style="font-size:9px; color:#777; margin-right:4px; align-self:center;">BEST</div>
-      <div class="pain-scale">
-        <div class="pain-num"><div class="pain-circle">0</div></div>
-        <div class="pain-num"><div class="pain-circle">1</div></div>
-        <div class="pain-num"><div class="pain-circle">2</div></div>
-        <div class="pain-num"><div class="pain-circle">3</div></div>
-        <div class="pain-num"><div class="pain-circle">4</div></div>
-        <div class="pain-num"><div class="pain-circle">5</div></div>
-        <div class="pain-num"><div class="pain-circle">6</div></div>
-        <div class="pain-num"><div class="pain-circle">7</div></div>
-        <div class="pain-num"><div class="pain-circle">8</div></div>
-        <div class="pain-num"><div class="pain-circle">9</div></div>
-        <div class="pain-num"><div class="pain-circle">10</div></div>
+    </div>
+    <div class="pain-row">
+      <span class="pain-lbl">Best</span>
+      <div class="pain-nums">
+        <div class="pn">0</div><div class="pn">1</div><div class="pn">2</div><div class="pn">3</div><div class="pn">4</div>
+        <div class="pn">5</div><div class="pn">6</div><div class="pn">7</div><div class="pn">8</div><div class="pn">9</div><div class="pn">10</div>
       </div>
     </div>
   </div>
 
-  <!-- Pain Description -->
-  <div style="margin-bottom:10px;">
-    <label style="display:block; font-size:9px; color:#777; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:6px;">Pain Description — Check all that apply</label>
+  <!-- PAIN DESCRIPTION -->
+  <div style="margin-bottom:12px;">
+    <span class="lbl" style="display:block;margin-bottom:6px;">Pain Description — Check all that apply</span>
     <div class="checks">
-      <div class="check-item"><span class="box"></span> Dull/Achy</div>
-      <div class="check-item"><span class="box"></span> Sharp</div>
-      <div class="check-item"><span class="box"></span> Burning</div>
-      <div class="check-item"><span class="box"></span> Throbbing</div>
-      <div class="check-item"><span class="box"></span> Shooting</div>
-      <div class="check-item"><span class="box"></span> Numbness/Tingling</div>
-      <div class="check-item"><span class="box"></span> Constant</div>
-      <div class="check-item"><span class="box"></span> Intermittent</div>
+      <div class="ci"><span class="sq"></span> Dull / Achy</div>
+      <div class="ci"><span class="sq"></span> Sharp</div>
+      <div class="ci"><span class="sq"></span> Burning</div>
+      <div class="ci"><span class="sq"></span> Throbbing</div>
+      <div class="ci"><span class="sq"></span> Shooting</div>
+      <div class="ci"><span class="sq"></span> Numbness / Tingling</div>
+      <div class="ci"><span class="sq"></span> Constant</div>
+      <div class="ci"><span class="sq"></span> Intermittent</div>
     </div>
   </div>
   <div class="row">
-    <div class="field"><label>What makes it worse?</label><span class="line"></span></div>
-    <div class="field"><label>What makes it better?</label><span class="line"></span></div>
+    <div class="f"><span class="lbl">What makes it worse?</span><span class="writeline"></span></div>
+    <div class="f"><span class="lbl">What makes it better?</span><span class="writeline"></span></div>
   </div>
 
-  <!-- Medical History -->
+  <!-- MEDICAL HISTORY -->
   <h2>Medical History — Check all that apply</h2>
   <div class="checks" style="margin-bottom:10px;">
-    <div class="check-item"><span class="box"></span> Diabetes</div>
-    <div class="check-item"><span class="box"></span> Arthritis (RA/OA)</div>
-    <div class="check-item"><span class="box"></span> Heart Disease</div>
-    <div class="check-item"><span class="box"></span> High Blood Pressure</div>
-    <div class="check-item"><span class="box"></span> Stroke</div>
-    <div class="check-item"><span class="box"></span> Osteoporosis</div>
-    <div class="check-item"><span class="box"></span> Cancer</div>
-    <div class="check-item"><span class="box"></span> Fibromyalgia</div>
-    <div class="check-item"><span class="box"></span> Autoimmune Disorder</div>
-    <div class="check-item"><span class="box"></span> Pacemaker</div>
-    <div class="check-item"><span class="box"></span> Seizures/Epilepsy</div>
-    <div class="check-item"><span class="box"></span> TBI</div>
-    <div class="check-item"><span class="box"></span> Blood Clotting Issues</div>
-    <div class="check-item"><span class="box"></span> Depression/Anxiety</div>
-    <div class="check-item"><span class="box"></span> Hepatitis (A/B/C)</div>
+    <div class="ci"><span class="sq"></span> Diabetes</div>
+    <div class="ci"><span class="sq"></span> Arthritis (RA/OA)</div>
+    <div class="ci"><span class="sq"></span> Heart Disease</div>
+    <div class="ci"><span class="sq"></span> High Blood Pressure</div>
+    <div class="ci"><span class="sq"></span> Stroke</div>
+    <div class="ci"><span class="sq"></span> Osteoporosis</div>
+    <div class="ci"><span class="sq"></span> Cancer</div>
+    <div class="ci"><span class="sq"></span> Fibromyalgia</div>
+    <div class="ci"><span class="sq"></span> Autoimmune Disorder</div>
+    <div class="ci"><span class="sq"></span> Pacemaker</div>
+    <div class="ci"><span class="sq"></span> Seizures / Epilepsy</div>
+    <div class="ci"><span class="sq"></span> TBI</div>
+    <div class="ci"><span class="sq"></span> Blood Clotting Issues</div>
+    <div class="ci"><span class="sq"></span> Depression / Anxiety</div>
+    <div class="ci"><span class="sq"></span> Hepatitis (A/B/C)</div>
   </div>
-  <div class="row">
-    <div class="field full"><label>Other conditions, surgeries, or hospitalizations</label><div class="lines-tall"><span></span><span></span></div></div>
+  <div style="margin-bottom:12px;">
+    <span class="lbl">Other conditions, surgeries, or hospitalizations</span>
+    <div class="writebox">
+      <span class="writeline"></span>
+      <span class="writeline"></span>
+    </div>
   </div>
 
-  <!-- Recent Health -->
+  <!-- RECENT HEALTH -->
   <h2>Recent Health</h2>
-  <div style="margin-bottom:10px;">
-    <div style="font-size:11px; margin-bottom:6px;">Any illness in the past 2–3 weeks? (cold, flu, infection, etc.)</div>
-    <div class="checks" style="margin-bottom:8px;">
-      <div class="check-item"><span class="circle"></span> No</div>
-      <div class="check-item"><span class="circle"></span> Yes — describe: <span style="display:inline-block; border-bottom:1px solid #999; width:260px; margin-left:4px;">&nbsp;</span></div>
+  <div style="margin-bottom:12px;">
+    <div style="font-size:11px;margin-bottom:7px;">Any illness in the past 2–3 weeks? (cold, flu, infection, etc.)</div>
+    <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
+      <div class="ci"><span class="cr"></span> No</div>
+      <div class="ci"><span class="cr"></span> Yes &nbsp;— If yes: <span style="display:inline-block;border-bottom:1px solid #aaa;width:320px;">&nbsp;</span></div>
     </div>
   </div>
 
-  <!-- Medications & Allergies -->
+  <!-- MEDICATIONS & ALLERGIES -->
   <h2>Medications &amp; Allergies</h2>
-  <div class="row">
-    <div class="field"><label>Current Medications (name &amp; dose)</label><div class="lines-tall"><span></span><span></span></div></div>
-    <div class="field"><label>Allergies (medications or other)</label><div class="lines-tall"><span></span><span></span></div></div>
+  <div class="row" style="align-items:flex-start;">
+    <div class="f">
+      <span class="lbl">Current Medications (name &amp; dose)</span>
+      <div class="writebox"><span class="writeline"></span><span class="writeline"></span><span class="writeline"></span></div>
+    </div>
+    <div class="f">
+      <span class="lbl">Allergies (medications or other)</span>
+      <div class="writebox"><span class="writeline"></span><span class="writeline"></span><span class="writeline"></span></div>
+    </div>
   </div>
 
-  <!-- Lifestyle -->
+  <!-- LIFESTYLE -->
   <h2>Lifestyle</h2>
-  <div style="display:flex; gap:40px; margin-bottom:10px; flex-wrap:wrap;">
+  <div style="display:flex;gap:48px;margin-bottom:12px;flex-wrap:wrap;">
     <div>
-      <div style="font-size:11px; margin-bottom:5px;">Smoke / use nicotine?</div>
-      <div class="checks"><div class="check-item"><span class="circle"></span> No</div><div class="check-item"><span class="circle"></span> Yes</div></div>
+      <div style="font-size:11px;margin-bottom:6px;">Smoke / use nicotine?</div>
+      <div class="checks"><div class="ci"><span class="cr"></span> No</div><div class="ci"><span class="cr"></span> Yes</div></div>
     </div>
     <div>
-      <div style="font-size:11px; margin-bottom:5px;">Drink alcohol?</div>
-      <div class="checks"><div class="check-item"><span class="circle"></span> No</div><div class="check-item"><span class="circle"></span> Yes</div></div>
+      <div style="font-size:11px;margin-bottom:6px;">Drink alcohol?</div>
+      <div class="checks"><div class="ci"><span class="cr"></span> No</div><div class="ci"><span class="cr"></span> Yes</div></div>
     </div>
     <div>
-      <div style="font-size:11px; margin-bottom:5px;">Daily caffeine?</div>
-      <div class="checks"><div class="check-item"><span class="circle"></span> No</div><div class="check-item"><span class="circle"></span> Yes</div></div>
+      <div style="font-size:11px;margin-bottom:6px;">Daily caffeine?</div>
+      <div class="checks"><div class="ci"><span class="cr"></span> No</div><div class="ci"><span class="cr"></span> Yes</div></div>
     </div>
   </div>
 
-  <!-- Consent -->
+  <!-- CONSENT -->
   <h2>Consent to Treatment</h2>
-  <div class="consent-box">
-    I authorize Herel Physical Therapy to provide treatment to me. I understand treatment may include therapeutic exercises, manual therapy, and other modalities as deemed appropriate. I understand I am financially responsible for all charges regardless of insurance coverage. I authorize contact via my mobile number for appointment reminders and account matters. If the patient is a minor, parent/guardian must sign below.
+  <div class="consent">
+    By signing below, I authorize Herel Physical Therapy to provide treatment to me. I understand treatment may include therapeutic exercises, manual therapy, and other modalities as deemed appropriate. I understand I am financially responsible for all charges regardless of insurance coverage. I authorize contact via my mobile number for appointment reminders and account matters. If the patient is a minor, a parent or guardian must sign below.
   </div>
-  <div class="row">
-    <div class="field">
-      <div class="sig-line"></div>
-      <div class="sig-label">Patient / Guardian Signature</div>
-    </div>
-    <div class="field half">
-      <div class="sig-line"></div>
-      <div class="sig-label">Printed Name</div>
-    </div>
-    <div class="field third">
-      <div class="sig-line"></div>
-      <div class="sig-label">Date</div>
-    </div>
+  <div class="sig-row">
+    <div class="f2"><div class="sig-line"></div><div class="sig-lbl">Patient / Guardian Signature</div></div>
+    <div class="f"><div class="sig-line"></div><div class="sig-lbl">Printed Name</div></div>
+    <div class="f05"><div class="sig-line"></div><div class="sig-lbl">Date</div></div>
   </div>
 
-  <button class="print-btn" onclick="window.print()">🖨 Print Form</button>
+  <button class="print-btn" onclick="window.print()">🖨&nbsp; Print Form</button>
 
 </div>
 </body>
