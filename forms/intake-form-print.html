@@ -29,8 +29,9 @@
 
     label { display: block; font-size: 9px; color: #777; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
     .line { display: block; border-bottom: 1px solid #999; height: 20px; width: 100%; margin-bottom: 2px; }
-    .line-tall { display: block; border: 1px solid #999; height: 44px; width: 100%; margin-bottom: 2px; }
     .line-short { display: block; border-bottom: 1px solid #999; height: 20px; width: 100%; }
+    .lines-tall { display: block; width: 100%; margin-bottom: 2px; }
+    .lines-tall span { display: block; border-bottom: 1px solid #bbb; height: 22px; margin-bottom: 4px; }
 
     /* Checkboxes */
     .checks { display: flex; flex-wrap: wrap; gap: 6px 18px; }
@@ -124,7 +125,7 @@
   <!-- Reason for Visit -->
   <h2>Reason for Visit</h2>
   <div class="row">
-    <div class="field full"><label>What brings you in today?</label><span class="line-tall"></span></div>
+    <div class="field full"><label>What brings you in today?</label><div class="lines-tall"><span></span><span></span></div></div>
   </div>
   <div class="row">
     <div class="field half"><label>How long have you had this problem?</label><span class="line"></span></div>
@@ -221,7 +222,7 @@
     <div class="check-item"><span class="box"></span> Hepatitis (A/B/C)</div>
   </div>
   <div class="row">
-    <div class="field full"><label>Other conditions, surgeries, or hospitalizations</label><span class="line-tall"></span></div>
+    <div class="field full"><label>Other conditions, surgeries, or hospitalizations</label><div class="lines-tall"><span></span><span></span></div></div>
   </div>
 
   <!-- Recent Health -->
@@ -237,8 +238,8 @@
   <!-- Medications & Allergies -->
   <h2>Medications &amp; Allergies</h2>
   <div class="row">
-    <div class="field"><label>Current Medications (name &amp; dose)</label><span class="line-tall"></span></div>
-    <div class="field"><label>Allergies (medications or other)</label><span class="line-tall"></span></div>
+    <div class="field"><label>Current Medications (name &amp; dose)</label><div class="lines-tall"><span></span><span></span></div></div>
+    <div class="field"><label>Allergies (medications or other)</label><div class="lines-tall"><span></span><span></span></div></div>
   </div>
 
   <!-- Lifestyle -->
