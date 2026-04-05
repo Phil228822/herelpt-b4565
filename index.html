@@ -503,7 +503,10 @@
             </div>
           </div>
         </div>
-        <div class="tcarousel-dots" id="tcarousel-dots"></div>
+        <div class="tcarousel-arrows">
+          <button class="tcarousel-arrow" id="tcarousel-prev" aria-label="Previous">&#8592;</button>
+          <button class="tcarousel-arrow" id="tcarousel-next" aria-label="Next">&#8594;</button>
+        </div>
       </div>
     </div>
   </section>
@@ -511,9 +514,9 @@
     .tcarousel-wrap { position: relative; overflow: hidden; }
     .tcarousel { display: flex; gap: 1.5rem; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
     .tcarousel .testimonial { flex: 0 0 calc(33.333% - 1rem); min-width: 0; }
-    .tcarousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 1.75rem; }
-    .tcarousel-dots button { width: 8px; height: 8px; border-radius: 50%; border: none; background: var(--border); cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
-    .tcarousel-dots button.active { background: var(--primary); transform: scale(1.3); }
+    .tcarousel-arrows { display: flex; justify-content: center; gap: 12px; margin-top: 1.25rem; }
+    .tcarousel-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 1.1rem; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; }
+    .tcarousel-arrow:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
     @media (max-width: 768px) {
       .tcarousel .testimonial { flex: 0 0 85%; }
     }
@@ -521,7 +524,8 @@
   <script>
     (function() {
       const track = document.getElementById('tcarousel');
-      const dotsEl = document.getElementById('tcarousel-dots');
+      const prevBtn = document.getElementById('tcarousel-prev');
+      const nextBtn = document.getElementById('tcarousel-next');
       if (!track) return;
       const cards = track.querySelectorAll('.testimonial');
       const isMobile = () => window.innerWidth <= 768;
@@ -530,25 +534,12 @@
       let current = 0;
       let timer;
 
-      // Build dots
-      const numDots = () => total - perView() + 1;
-      function buildDots() {
-        dotsEl.innerHTML = '';
-        for (let i = 0; i < numDots(); i++) {
-          const btn = document.createElement('button');
-          if (i === current) btn.classList.add('active');
-          btn.addEventListener('click', () => { goTo(i); resetTimer(); });
-          dotsEl.appendChild(btn);
-        }
-      }
-
       function goTo(idx) {
         const max = total - perView();
         current = Math.max(0, Math.min(idx, max));
         const cardWidth = cards[0].getBoundingClientRect().width;
         const gap = isMobile() ? 0 : 24;
         track.style.transform = `translateX(-${current * (cardWidth + gap)}px)`;
-        dotsEl.querySelectorAll('button').forEach((b, i) => b.classList.toggle('active', i === current));
       }
 
       function next() {
@@ -556,14 +547,21 @@
         goTo(current < max ? current + 1 : 0);
       }
 
+      function prev() {
+        const max = total - perView();
+        goTo(current > 0 ? current - 1 : max);
+      }
+
       function resetTimer() {
         clearInterval(timer);
         timer = setInterval(next, 4000);
       }
 
-      buildDots();
+      prevBtn.addEventListener('click', () => { prev(); resetTimer(); });
+      nextBtn.addEventListener('click', () => { next(); resetTimer(); });
+
       resetTimer();
-      window.addEventListener('resize', () => { buildDots(); goTo(current); });
+      window.addEventListener('resize', () => { goTo(current); });
     })();
   </script>
 
