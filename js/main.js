@@ -73,14 +73,29 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
-      const original = btn.textContent;
-      btn.textContent = 'Sent!';
-      btn.style.background = '#22c55e';
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.style.background = '';
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+      .then(() => {
+        btn.textContent = 'Sent!';
+        btn.style.background = '#22c55e';
         form.reset();
-      }, 2500);
+        setTimeout(() => {
+          btn.textContent = 'Send Message';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 3000);
+      })
+      .catch(() => {
+        btn.textContent = 'Error — try again';
+        btn.style.background = '#ef4444';
+        btn.disabled = false;
+      });
     });
   }
 
