@@ -661,5 +661,23 @@
     });
   })();
   </script>
+
+  <script>
+  (function() {
+    const video = document.getElementById('heroVideo');
+    if (!video) return;
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          const scrollY = window.scrollY;
+          video.style.transform = `translateX(-50%) translateY(${scrollY * 0.4}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+  </script>
 </body>
 </html>
