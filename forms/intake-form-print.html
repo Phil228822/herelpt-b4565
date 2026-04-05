@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Intake Form | Herel Physical Therapy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; font-size: 12px; color: #111; background: #fff; }
+
+    .page { max-width: 760px; margin: 24px auto; padding: 36px 40px; }
+
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid #5B7C6E; padding-bottom: 10px; margin-bottom: 18px; }
+    .logo { font-size: 26px; font-weight: 900; letter-spacing: -1px; }
+    .logo span { color: #C4A882; }
+    .clinic-info { text-align: right; font-size: 10px; color: #555; line-height: 1.7; }
+    .form-title { font-size: 14px; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px; color: #333; }
+
+    /* Section headers */
+    h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #fff; background: #5B7C6E; padding: 4px 8px; margin: 16px 0 10px; }
+
+    /* Field rows */
+    .row { display: flex; gap: 16px; margin-bottom: 10px; }
+    .field { flex: 1; }
+    .field.half { flex: 0.5; }
+    .field.third { flex: 0.33; }
+    .field.two-third { flex: 0.66; }
+    .field.full { flex: 1 1 100%; }
+
+    label { display: block; font-size: 9px; color: #777; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
+    .line { display: block; border-bottom: 1px solid #999; height: 20px; width: 100%; margin-bottom: 2px; }
+    .line-tall { display: block; border: 1px solid #999; height: 44px; width: 100%; margin-bottom: 2px; }
+    .line-short { display: block; border-bottom: 1px solid #999; height: 20px; width: 100%; }
+
+    /* Checkboxes */
+    .checks { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+    .check-item { display: flex; align-items: center; gap: 5px; font-size: 11px; }
+    .box { display: inline-block; width: 12px; height: 12px; border: 1.5px solid #555; border-radius: 2px; flex-shrink: 0; }
+    .circle { display: inline-block; width: 12px; height: 12px; border: 1.5px solid #555; border-radius: 50%; flex-shrink: 0; }
+
+    /* Pain scale */
+    .pain-scale { display: flex; gap: 6px; align-items: center; margin-top: 4px; }
+    .pain-num { display: flex; flex-direction: column; align-items: center; font-size: 10px; gap: 2px; }
+    .pain-circle { width: 22px; height: 22px; border: 1.5px solid #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #333; }
+
+    /* Signature */
+    .sig-line { border-bottom: 1.5px solid #333; height: 28px; width: 100%; margin-top: 4px; }
+    .sig-label { font-size: 9px; color: #777; margin-top: 3px; }
+
+    /* Consent box */
+    .consent-box { border: 1px solid #ccc; padding: 10px 12px; font-size: 10.5px; line-height: 1.7; color: #333; margin-bottom: 12px; background: #fafafa; }
+
+    /* Print button */
+    .print-btn { display: block; margin: 24px auto 0; padding: 10px 32px; background: #5B7C6E; color: #fff; border: none; border-radius: 5px; font-size: 14px; font-weight: 700; cursor: pointer; }
+    .print-btn:hover { background: #4a6a5d; }
+
+    @media print {
+      body { font-size: 11px; }
+      .page { margin: 0; padding: 18px 22px; max-width: 100%; }
+      .print-btn { display: none; }
+      h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="logo">Herel <span>PT</span></div>
+      <div style="font-size:10px; color:#777; margin-top:2px;">Physical Therapy</div>
+    </div>
+    <div class="clinic-info">
+      73010 El Paseo, Suite 2B &nbsp;|&nbsp; Palm Desert, CA 92260<br>
+      442-234-5364 &nbsp;|&nbsp; HerelTherapy@gmail.com
+    </div>
+  </div>
+
+  <div class="form-title">Patient Intake Form</div>
+
+  <!-- Patient Information -->
+  <h2>Patient Information</h2>
+  <div class="row">
+    <div class="field two-third"><label>Full Name</label><span class="line"></span></div>
+    <div class="field half"><label>Date of Birth</label><span class="line"></span></div>
+    <div class="field half"><label>Today's Date</label><span class="line"></span></div>
+  </div>
+  <div class="row">
+    <div class="field"><label>Street Address</label><span class="line"></span></div>
+    <div class="field half"><label>City</label><span class="line"></span></div>
+    <div class="field third"><label>State</label><span class="line"></span></div>
+    <div class="field third"><label>Zip</label><span class="line"></span></div>
+  </div>
+  <div class="row">
+    <div class="field"><label>Mobile Phone</label><span class="line"></span></div>
+    <div class="field"><label>Email</label><span class="line"></span></div>
+    <div class="field"><label>Employer</label><span class="line"></span></div>
+  </div>
+  <div class="row">
+    <div class="field"><label>Referring Physician</label><span class="line"></span></div>
+    <div class="field"><label>Primary Care Physician</label><span class="line"></span></div>
+    <div class="field"><label>How did you hear about us?</label><span class="line"></span></div>
+  </div>
+  <div class="row">
+    <div class="field"><label>Emergency Contact Name</label><span class="line"></span></div>
+    <div class="field third"><label>Relationship</label><span class="line"></span></div>
+    <div class="field"><label>Emergency Contact Phone</label><span class="line"></span></div>
+  </div>
+
+  <!-- Insurance -->
+  <h2>Insurance Information</h2>
+  <div class="row">
+    <div class="field"><label>Insurance Provider</label><span class="line"></span></div>
+    <div class="field"><label>Member ID</label><span class="line"></span></div>
+    <div class="field"><label>Group Number</label><span class="line"></span></div>
+  </div>
+  <div class="row">
+    <div class="field"><label>Subscriber Name (if different)</label><span class="line"></span></div>
+    <div class="field half"><label>Subscriber DOB</label><span class="line"></span></div>
+    <div class="field"><label>Secondary Insurance (if any)</label><span class="line"></span></div>
+  </div>
+
+  <!-- Reason for Visit -->
+  <h2>Reason for Visit</h2>
+  <div class="row">
+    <div class="field full"><label>What brings you in today?</label><span class="line-tall"></span></div>
+  </div>
+  <div class="row">
+    <div class="field half"><label>How long have you had this problem?</label><span class="line"></span></div>
+    <div class="field"><label>How does it affect your daily life?</label><span class="line"></span></div>
+  </div>
+
+  <!-- Pain Scale -->
+  <div style="margin-bottom:10px;">
+    <label style="display:block; font-size:9px; color:#777; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:6px;">Pain Level — Circle a number &nbsp; (0 = No Pain &nbsp;|&nbsp; 10 = Worst Possible)</label>
+    <div style="display:flex; gap:4px; margin-bottom:8px;">
+      <div style="font-size:9px; color:#777; margin-right:4px; align-self:center;">NOW</div>
+      <div class="pain-scale">
+        <div class="pain-num"><div class="pain-circle">0</div></div>
+        <div class="pain-num"><div class="pain-circle">1</div></div>
+        <div class="pain-num"><div class="pain-circle">2</div></div>
+        <div class="pain-num"><div class="pain-circle">3</div></div>
+        <div class="pain-num"><div class="pain-circle">4</div></div>
+        <div class="pain-num"><div class="pain-circle">5</div></div>
+        <div class="pain-num"><div class="pain-circle">6</div></div>
+        <div class="pain-num"><div class="pain-circle">7</div></div>
+        <div class="pain-num"><div class="pain-circle">8</div></div>
+        <div class="pain-num"><div class="pain-circle">9</div></div>
+        <div class="pain-num"><div class="pain-circle">10</div></div>
+      </div>
+      &nbsp;&nbsp;
+      <div style="font-size:9px; color:#777; margin-right:4px; align-self:center;">WORST</div>
+      <div class="pain-scale">
+        <div class="pain-num"><div class="pain-circle">0</div></div>
+        <div class="pain-num"><div class="pain-circle">1</div></div>
+        <div class="pain-num"><div class="pain-circle">2</div></div>
+        <div class="pain-num"><div class="pain-circle">3</div></div>
+        <div class="pain-num"><div class="pain-circle">4</div></div>
+        <div class="pain-num"><div class="pain-circle">5</div></div>
+        <div class="pain-num"><div class="pain-circle">6</div></div>
+        <div class="pain-num"><div class="pain-circle">7</div></div>
+        <div class="pain-num"><div class="pain-circle">8</div></div>
+        <div class="pain-num"><div class="pain-circle">9</div></div>
+        <div class="pain-num"><div class="pain-circle">10</div></div>
+      </div>
+      &nbsp;&nbsp;
+      <div style="font-size:9px; color:#777; margin-right:4px; align-self:center;">BEST</div>
+      <div class="pain-scale">
+        <div class="pain-num"><div class="pain-circle">0</div></div>
+        <div class="pain-num"><div class="pain-circle">1</div></div>
+        <div class="pain-num"><div class="pain-circle">2</div></div>
+        <div class="pain-num"><div class="pain-circle">3</div></div>
+        <div class="pain-num"><div class="pain-circle">4</div></div>
+        <div class="pain-num"><div class="pain-circle">5</div></div>
+        <div class="pain-num"><div class="pain-circle">6</div></div>
+        <div class="pain-num"><div class="pain-circle">7</div></div>
+        <div class="pain-num"><div class="pain-circle">8</div></div>
+        <div class="pain-num"><div class="pain-circle">9</div></div>
+        <div class="pain-num"><div class="pain-circle">10</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pain Description -->
+  <div style="margin-bottom:10px;">
+    <label style="display:block; font-size:9px; color:#777; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:6px;">Pain Description — Check all that apply</label>
+    <div class="checks">
+      <div class="check-item"><span class="box"></span> Dull/Achy</div>
+      <div class="check-item"><span class="box"></span> Sharp</div>
+      <div class="check-item"><span class="box"></span> Burning</div>
+      <div class="check-item"><span class="box"></span> Throbbing</div>
+      <div class="check-item"><span class="box"></span> Shooting</div>
+      <div class="check-item"><span class="box"></span> Numbness/Tingling</div>
+      <div class="check-item"><span class="box"></span> Constant</div>
+      <div class="check-item"><span class="box"></span> Intermittent</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field"><label>What makes it worse?</label><span class="line"></span></div>
+    <div class="field"><label>What makes it better?</label><span class="line"></span></div>
+  </div>
+
+  <!-- Medical History -->
+  <h2>Medical History — Check all that apply</h2>
+  <div class="checks" style="margin-bottom:10px;">
+    <div class="check-item"><span class="box"></span> Diabetes</div>
+    <div class="check-item"><span class="box"></span> Arthritis (RA/OA)</div>
+    <div class="check-item"><span class="box"></span> Heart Disease</div>
+    <div class="check-item"><span class="box"></span> High Blood Pressure</div>
+    <div class="check-item"><span class="box"></span> Stroke</div>
+    <div class="check-item"><span class="box"></span> Osteoporosis</div>
+    <div class="check-item"><span class="box"></span> Cancer</div>
+    <div class="check-item"><span class="box"></span> Fibromyalgia</div>
+    <div class="check-item"><span class="box"></span> Autoimmune Disorder</div>
+    <div class="check-item"><span class="box"></span> Pacemaker</div>
+    <div class="check-item"><span class="box"></span> Seizures/Epilepsy</div>
+    <div class="check-item"><span class="box"></span> TBI</div>
+    <div class="check-item"><span class="box"></span> Blood Clotting Issues</div>
+    <div class="check-item"><span class="box"></span> Depression/Anxiety</div>
+    <div class="check-item"><span class="box"></span> Hepatitis (A/B/C)</div>
+  </div>
+  <div class="row">
+    <div class="field full"><label>Other conditions, surgeries, or hospitalizations</label><span class="line-tall"></span></div>
+  </div>
+
+  <!-- Recent Health -->
+  <h2>Recent Health</h2>
+  <div style="margin-bottom:10px;">
+    <div style="font-size:11px; margin-bottom:6px;">Any illness in the past 2–3 weeks? (cold, flu, infection, etc.)</div>
+    <div class="checks" style="margin-bottom:8px;">
+      <div class="check-item"><span class="circle"></span> No</div>
+      <div class="check-item"><span class="circle"></span> Yes — describe: <span style="display:inline-block; border-bottom:1px solid #999; width:260px; margin-left:4px;">&nbsp;</span></div>
+    </div>
+  </div>
+
+  <!-- Medications & Allergies -->
+  <h2>Medications &amp; Allergies</h2>
+  <div class="row">
+    <div class="field"><label>Current Medications (name &amp; dose)</label><span class="line-tall"></span></div>
+    <div class="field"><label>Allergies (medications or other)</label><span class="line-tall"></span></div>
+  </div>
+
+  <!-- Lifestyle -->
+  <h2>Lifestyle</h2>
+  <div style="display:flex; gap:40px; margin-bottom:10px; flex-wrap:wrap;">
+    <div>
+      <div style="font-size:11px; margin-bottom:5px;">Smoke / use nicotine?</div>
+      <div class="checks"><div class="check-item"><span class="circle"></span> No</div><div class="check-item"><span class="circle"></span> Yes</div></div>
+    </div>
+    <div>
+      <div style="font-size:11px; margin-bottom:5px;">Drink alcohol?</div>
+      <div class="checks"><div class="check-item"><span class="circle"></span> No</div><div class="check-item"><span class="circle"></span> Yes</div></div>
+    </div>
+    <div>
+      <div style="font-size:11px; margin-bottom:5px;">Daily caffeine?</div>
+      <div class="checks"><div class="check-item"><span class="circle"></span> No</div><div class="check-item"><span class="circle"></span> Yes</div></div>
+    </div>
+  </div>
+
+  <!-- Consent -->
+  <h2>Consent to Treatment</h2>
+  <div class="consent-box">
+    I authorize Herel Physical Therapy to provide treatment to me. I understand treatment may include therapeutic exercises, manual therapy, and other modalities as deemed appropriate. I understand I am financially responsible for all charges regardless of insurance coverage. I authorize contact via my mobile number for appointment reminders and account matters. If the patient is a minor, parent/guardian must sign below.
+  </div>
+  <div class="row">
+    <div class="field">
+      <div class="sig-line"></div>
+      <div class="sig-label">Patient / Guardian Signature</div>
+    </div>
+    <div class="field half">
+      <div class="sig-line"></div>
+      <div class="sig-label">Printed Name</div>
+    </div>
+    <div class="field third">
+      <div class="sig-line"></div>
+      <div class="sig-label">Date</div>
+    </div>
+  </div>
+
+  <button class="print-btn" onclick="window.print()">🖨 Print Form</button>
+
+</div>
+</body>
+</html>
