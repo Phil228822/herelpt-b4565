@@ -452,34 +452,112 @@
         <h2>What our patients say</h2>
         <p>Real stories from real patients who found healing at Herel PT.</p>
       </div>
-      <div class="grid grid-3">
-        <div class="testimonial">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">Very knowledgeable and caring. Dr. Herel takes the time to understand your specific needs and creates a treatment plan that actually works. I've never felt so supported in my recovery.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">S</div>
-            <div class="testimonial-name">Sarah M.</div>
+      <div class="tcarousel-wrap">
+        <div class="tcarousel" id="tcarousel">
+          <div class="testimonial">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">Very knowledgeable and caring. Dr. Herel takes the time to understand your specific needs and creates a treatment plan that actually works. I've never felt so supported in my recovery.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">S</div>
+              <div class="testimonial-name">Sarah M.</div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">Excellent motivation and monitoring throughout my entire treatment. After struggling elsewhere, I was amazed at the results I experienced at Herel PT. Truly one-of-a-kind care.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">J</div>
+              <div class="testimonial-name">James R.</div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">I came in feeling hopeless after months of pain. Dr. Herel's personalized approach made all the difference. The one-on-one attention means you're never just another patient.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">L</div>
+              <div class="testimonial-name">Linda T.</div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">Dr. Herel is incredible. He genuinely cares about getting you better, not just moving you through appointments. My back pain is gone after years of suffering.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">M</div>
+              <div class="testimonial-name">Mike D.</div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">The difference between Herel PT and everywhere else I've been is night and day. One-on-one attention every single visit. Worth every penny.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">R</div>
+              <div class="testimonial-name">Rachel K.</div>
+            </div>
           </div>
         </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">Excellent motivation and monitoring throughout my entire treatment. After struggling elsewhere, I was amazed at the results I experienced at Herel PT. Truly one-of-a-kind care.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">J</div>
-            <div class="testimonial-name">James R.</div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">I came in feeling hopeless after months of pain. Dr. Herel's personalized approach made all the difference. The one-on-one attention means you're never just another patient.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">L</div>
-            <div class="testimonial-name">Linda T.</div>
-          </div>
-        </div>
+        <div class="tcarousel-dots" id="tcarousel-dots"></div>
       </div>
     </div>
   </section>
+  <style>
+    .tcarousel-wrap { position: relative; overflow: hidden; }
+    .tcarousel { display: flex; gap: 1.5rem; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+    .tcarousel .testimonial { flex: 0 0 calc(33.333% - 1rem); min-width: 0; }
+    .tcarousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 1.75rem; }
+    .tcarousel-dots button { width: 8px; height: 8px; border-radius: 50%; border: none; background: var(--border); cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
+    .tcarousel-dots button.active { background: var(--primary); transform: scale(1.3); }
+    @media (max-width: 768px) {
+      .tcarousel .testimonial { flex: 0 0 85%; }
+    }
+  </style>
+  <script>
+    (function() {
+      const track = document.getElementById('tcarousel');
+      const dotsEl = document.getElementById('tcarousel-dots');
+      if (!track) return;
+      const cards = track.querySelectorAll('.testimonial');
+      const isMobile = () => window.innerWidth <= 768;
+      const perView = () => isMobile() ? 1 : 3;
+      const total = cards.length;
+      let current = 0;
+      let timer;
+
+      // Build dots
+      const numDots = () => total - perView() + 1;
+      function buildDots() {
+        dotsEl.innerHTML = '';
+        for (let i = 0; i < numDots(); i++) {
+          const btn = document.createElement('button');
+          if (i === current) btn.classList.add('active');
+          btn.addEventListener('click', () => { goTo(i); resetTimer(); });
+          dotsEl.appendChild(btn);
+        }
+      }
+
+      function goTo(idx) {
+        const max = total - perView();
+        current = Math.max(0, Math.min(idx, max));
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const gap = isMobile() ? 0 : 24;
+        track.style.transform = `translateX(-${current * (cardWidth + gap)}px)`;
+        dotsEl.querySelectorAll('button').forEach((b, i) => b.classList.toggle('active', i === current));
+      }
+
+      function next() {
+        const max = total - perView();
+        goTo(current < max ? current + 1 : 0);
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, 4000);
+      }
+
+      buildDots();
+      resetTimer();
+      window.addEventListener('resize', () => { buildDots(); goTo(current); });
+    })();
+  </script>
 
   <footer class="footer">
     <div class="footer-inner">
