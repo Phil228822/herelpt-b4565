@@ -509,13 +509,13 @@
     </div>
   </section>
   <style>
-    .tcarousel-wrap { position: relative; overflow: hidden; padding: 0 30px; }
+    .tcarousel-wrap { position: relative; overflow: hidden; }
     .tcarousel { display: flex; gap: 1.5rem; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
     .tcarousel .testimonial { flex: 0 0 calc(33.333% - 1rem); min-width: 0; }
-    .tcarousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--primary); color: #fff; font-size: 1.2rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: background 0.2s, transform 0.2s; }
-    .tcarousel-arrow:hover { background: var(--primary-dark, #4a6a5d); transform: translateY(-50%) scale(1.08); }
-    .tcarousel-prev { left: -22px; }
-    .tcarousel-next { right: -22px; }
+    .tcarousel-arrow { position: absolute; top: 0; bottom: 0; width: 64px; border: none; background: rgba(91,124,110,0.15); color: #fff; font-size: 1.4rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .tcarousel-arrow:hover { background: rgba(91,124,110,0.35); }
+    .tcarousel-prev { left: 0; }
+    .tcarousel-next { right: 0; }
     @media (max-width: 768px) {
       .tcarousel .testimonial { flex: 0 0 85%; }
     }
