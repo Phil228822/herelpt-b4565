@@ -11,26 +11,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Fustat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <style>
-    /* ---- VIDEO HERO OVERRIDES ---- */
+    /* ---- HOMEPAGE HERO ---- */
     .vhero {
       position: relative;
       width: 100%;
       height: 72vh;
       max-height: 72vh;
       overflow: hidden;
-      background: #000;
-    }
-    .vhero-video {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 115%;
-      height: 130%;
-      object-fit: cover;
-      object-position: center 60%;
-      opacity: 0;
-      z-index: 0;
+      background: #1e2723 url('images/hero-bg.webp') center 52% / cover no-repeat;
     }
     .vhero-overlay {
       position: absolute;
@@ -292,10 +280,11 @@
       color: rgba(255,255,255,0.4);
     }
 
-    /* Mobile adjustments for video hero */
+    /* Mobile adjustments for homepage hero */
     @media (max-width: 768px) {
       .vhero-nav { padding: 12px 20px; }
       .vhero-nav-links { display: none; }
+      .vhero-nav-right .vhero-btn-ghost { display: none; }
       .vhero-content { padding: 40px 20px 60px; margin-top: 0; }
       .vhero-title { letter-spacing: -2px; }
       .vhero-sub { font-size: 17px; }
@@ -307,25 +296,18 @@
 </head>
 <body>
 
-  <!-- VIDEO HERO -->
+  <!-- HOMEPAGE HERO -->
   <section class="vhero">
-    <video
-      id="heroVideo"
-      class="vhero-video"
-      muted
-      playsinline
-      preload="auto"
-      src="images/hero-trail.mp4"
-    ></video>
     <div class="vhero-overlay"></div>
 
     <!-- Nav -->
     <nav class="vhero-nav">
-      <a href="index.html" class="vhero-nav-logo">Herel <span>PT</span></a>
+      <a href="index.html" class="vhero-nav-logo"><img src="images/logo-white.webp" alt="Herel PT" style="height:36px; width:auto; filter:brightness(10);"></a>
       <ul class="vhero-nav-links">
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="patient-info.html">Patient Info</a></li>
+        <li><a href="why-us.html">Why Us</a></li>
         <li><a href="team.html">Meet Dr. Phil</a></li>
         <li><a href="optimize.html">Optimize</a></li>
       </ul>
@@ -567,7 +549,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <div>
-        <div class="footer-brand">Herel <span>PT</span></div>
+        <div class="footer-brand"><img src="images/logo-white.webp" alt="Herel PT" style="height:36px; width:auto; filter:brightness(10);"></div>
         <p class="footer-desc">Healing starts here. Evidence-based, one-on-one physical therapy in Palm Desert, CA.</p>
       </div>
       <div>
@@ -605,78 +587,5 @@
   <script src="js/main.js"></script>
   <script>document.addEventListener('DOMContentLoaded', () => { if(typeof lucide !== 'undefined') lucide.createIcons(); });</script>
 
-  <!-- Video fade system - seamless loop, no black flash -->
-  <script>
-  (function() {
-    const video = document.getElementById('heroVideo');
-    if (!video) return;
-
-    let fadeRAF = null;
-    let fadingOut = false;
-
-    function cancelFade() {
-      if (fadeRAF) { cancelAnimationFrame(fadeRAF); fadeRAF = null; }
-    }
-
-    function fadeIn(duration) {
-      cancelFade();
-      fadingOut = false;
-      const start = performance.now();
-      const from = parseFloat(video.style.opacity) || 0;
-      function step(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        video.style.opacity = from + (1 - from) * progress;
-        if (progress < 1) { fadeRAF = requestAnimationFrame(step); }
-        else { fadeRAF = null; }
-      }
-      fadeRAF = requestAnimationFrame(step);
-    }
-
-    // Initial fade in on first load
-    video.addEventListener('canplay', function onCanPlay() {
-      video.removeEventListener('canplay', onCanPlay);
-      video.play().then(() => fadeIn(400)).catch(() => {});
-    });
-
-    // Seamless loop - just reset to start, no fade out at all
-    video.addEventListener('timeupdate', function() {
-      if (video.duration && !fadingOut) {
-        const remaining = video.duration - video.currentTime;
-        // When close to end, silently reset to beginning - no fade out
-        if (remaining <= 0.15) {
-          fadingOut = true;
-          video.currentTime = 0;
-          fadingOut = false;
-        }
-      }
-    });
-
-    // Fallback if timeupdate misses it
-    video.addEventListener('ended', function() {
-      video.currentTime = 0;
-      fadingOut = false;
-      video.play().catch(() => {});
-    });
-  })();
-  </script>
-
-  <script>
-  (function() {
-    const video = document.getElementById('heroVideo');
-    if (!video) return;
-    let ticking = false;
-    window.addEventListener('scroll', function() {
-      if (!ticking) {
-        requestAnimationFrame(function() {
-          const scrollY = window.scrollY;
-          video.style.transform = `translateX(-50%) translateY(${scrollY * 0.4}px)`;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  })();
-  </script>
 </body>
 </html>

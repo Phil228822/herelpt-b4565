@@ -3,3 +3,5 @@ node_modules/
 *.output
 herelpt-trail-video.mp4
 *.mp4
+.wrangler/
+/leaf.png

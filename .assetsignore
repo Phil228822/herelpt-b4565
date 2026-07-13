@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+*.output
+.git/
+.wrangler/
+.claude/
+AGENTS.md
+CLAUDE.md
+deploy.sh
+.assetsignore
+*.mp4
+/Herel PT intake/
+/leaf.png
